@@ -1,14 +1,13 @@
--- BANK LOAN DATA 
-USE banking_loan_risk;
+ USE banking_loan_risk;
 
--- 1. DATA TYPE 
+-- DATA TYPE 
 ALTER TABLE bank_loan
 MODIFY person_age INT,
 MODIFY person_income INT,
 MODIFY loan_amnt INT,
 MODIFY cb_person_cred_hist_length INT;
 
--- 2. NULL CHECK 
+-- NULL CHECK 
 
 SELECT
     SUM(person_age IS NULL) AS person_age_nulls,
@@ -27,7 +26,7 @@ SELECT
     SUM(loan_status IS NULL) AS loan_status_nulls
 FROM bank_loan;
 
--- 3. DATA QUALITY CHECK - (INVALID VALUES)
+-- DATA QUALITY CHECK 
 
 SELECT
     SUM(person_age < 18 OR person_age > 100) AS invalid_age,
@@ -37,7 +36,7 @@ SELECT
     SUM(loan_percent_income < 0) AS invalid_loan_percent_income
 FROM bank_loan;
 
--- 4. REMOVE INVALID AGE RECORDS
+-- REMOVE INVALID AGE RECORDS
 
 SET SQL_SAFE_UPDATES = 0;
 
@@ -46,13 +45,13 @@ WHERE person_age < 18 OR person_age > 100;
 
 SET SQL_SAFE_UPDATES = 1;
 
--- 5. VERIFY CLEANING
+--  VERIFY CLEANING
 
 SELECT COUNT(*) AS remaining_invalid_age
 FROM bank_loan
 WHERE person_age < 18 OR person_age > 100;
 
--- 6. CATEGORICAL VALUE CHECK
+--  CATEGORICAL VALUE CHECK
 
 SELECT DISTINCT person_gender FROM bank_loan;
 SELECT DISTINCT person_education FROM bank_loan;
@@ -61,7 +60,7 @@ SELECT DISTINCT loan_intent FROM bank_loan;
 SELECT DISTINCT previous_loan_defaults_on_file FROM bank_loan;
 SELECT DISTINCT loan_status FROM bank_loan;
 
--- 7. CREATE CLEAN ANALYSIS LAYER
+-- CREATE CLEAN ANALYSIS LAYER
 
 CREATE VIEW loan_cleaned AS
 SELECT * FROM bank_loan;
