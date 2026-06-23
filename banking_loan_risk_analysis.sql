@@ -1,5 +1,5 @@
 USE banking_loan_risk;
--- 1. OVERALL DEFAULT RATE
+-- OVERALL DEFAULT RATE
 
 SELECT 
     loan_status,
@@ -10,7 +10,7 @@ GROUP BY loan_status;
 
 
 
--- 2. INCOME RISK ANALYSIS
+-- INCOME RISK ANALYSIS
 SELECT 
     CASE 
         WHEN person_income < 30000 THEN 'Low Income'
@@ -25,7 +25,7 @@ FROM loan_cleaned
 GROUP BY income_band
 ORDER BY default_rate DESC;
 
--- 3. CREDIT SCORE ANALYSIS
+-- CREDIT SCORE ANALYSIS
 
 SELECT 
     CASE 
@@ -43,7 +43,7 @@ FROM loan_cleaned
 GROUP BY credit_band
 ORDER BY default_rate DESC;
 
--- 4. DTI (DEBT-TO-INCOME) ANALYSIS
+-- DTI (DEBT-TO-INCOME) ANALYSIS
 
 SELECT 
     CASE 
@@ -59,7 +59,7 @@ FROM loan_cleaned
 GROUP BY dti_band
 ORDER BY default_rate DESC;
 
--- 5. RISK SCORE- FEATURE ENGINEERING
+-- RISK SCORE- FEATURE ENGINEERING
 SELECT 
     *,
 
@@ -85,7 +85,7 @@ SELECT
 
 FROM loan_cleaned;
 
--- 6. APPROVAL DECISION ENGINE
+--  APPROVAL DECISION ENGINE
 SELECT 
     *,
 
