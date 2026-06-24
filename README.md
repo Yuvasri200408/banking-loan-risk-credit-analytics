@@ -201,7 +201,7 @@ This dashboard provides an executive-level view of loan portfolio quality, borro
 
 This dashboard focuses on borrower segmentation, credit quality analysis, income risk patterns, debt burden evaluation, and approval decision support.
 
-![Risk Dashboard](cutomer_credit_insights.png)
+![Risk Dashboard](customer_credit_insights.png)
 
 ---
 
