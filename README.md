@@ -230,7 +230,6 @@ This dashboard focuses on borrower segmentation, credit quality analysis, income
 ---
 
 ## Project Files
-## Project Files
 
 - [README.md](README.md) — Project documentation and business findings.
 - [banking_loan_data_quality_pipeline.sql](banking_loan_data_quality_pipeline.sql) — Data validation, quality checks, cleaning rules, and analytical view creation.
