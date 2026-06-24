@@ -178,7 +178,7 @@ ORDER BY default_rate DESC;
 
 ```
 
-Additional SQL analysis included:
+ SQL analysis included:
 
 * Income Risk Analysis
 * Credit Score Segmentation
@@ -195,13 +195,13 @@ Additional SQL analysis included:
 
 This dashboard provides an executive-level view of loan portfolio quality, borrower characteristics, default performance, and risk distribution.
 
-![Executive Dashboard](banking_loan_risk_dashboard_1.png)
+![Executive Dashboard](executive_risk_overview.png)
 
 ### Risk Segmentation & Credit Insights
 
 This dashboard focuses on borrower segmentation, credit quality analysis, income risk patterns, debt burden evaluation, and approval decision support.
 
-![Risk Dashboard](banking_loan_risk_dashboard_2.png)
+![Risk Dashboard](cutomer_credit_insight.png)
 
 ---
 
