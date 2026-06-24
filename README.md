@@ -230,15 +230,16 @@ This dashboard focuses on borrower segmentation, credit quality analysis, income
 ---
 
 ## Project Files
+## Project Files
 
-- README.md — Project documentation and business findings.
-- banking_loan_data_quality_pipeline.sql — Data validation, quality checks, cleaning rules, and analytical view creation.
-- banking_loan_eda_feature_engineering.ipynb — Exploratory Data Analysis (EDA), feature engineering, risk segmentation, and visualization.
-- banking_loan_risk_analysis.sql — Business-focused SQL analysis covering default risk, credit quality, affordability, and approval decision logic.
-- banking_loan_risk_dashboard.pbix — Interactive Power BI dashboard for risk monitoring and portfolio analysis.
-- banking_loan_risk_engineered.csv — Final analytical dataset containing engineered risk features and customer segments.
-- customer_credit_insights.png — Dashboard page focused on borrower characteristics, credit quality, and default behavior.
-- executive_risk_overview.png — Executive-level dashboard summarizing portfolio risk, default performance, and lending insights.
+- [README.md](README.md) — Project documentation and business findings.
+- [banking_loan_data_quality_pipeline.sql](banking_loan_data_quality_pipeline.sql) — Data validation, quality checks, cleaning rules, and analytical view creation.
+- [banking_loan_eda_feature_engineering.ipynb](banking_loan_eda_feature_engineering.ipynb) — Exploratory Data Analysis (EDA), feature engineering, risk segmentation, and visualization.
+- [banking_loan_risk_analysis.sql](banking_loan_risk_analysis.sql) — Business-focused SQL analysis covering default risk, credit quality, affordability, and approval decision logic.
+- [banking_loan_risk_dashboard.pbix](banking_loan_risk_dashboard.pbix) — Interactive Power BI dashboard for risk monitoring and portfolio analysis.
+- [banking_loan_risk_engineered.csv](banking_loan_risk_engineered.csv) — Final analytical dataset containing engineered risk features and customer segments.
+- [customer_credit_insights.png](customer_credit_insights.png) — Dashboard page focused on borrower characteristics, credit quality, and default behavior.
+- [executive_risk_overview.png](executive_risk_overview.png) — Executive-level dashboard summarizing portfolio risk, default performance, and lending insights.
 
 ---
 
