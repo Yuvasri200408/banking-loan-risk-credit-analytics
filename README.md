@@ -245,18 +245,15 @@ This dashboard focuses on borrower segmentation, credit quality analysis, income
 ## Repository Structure
 
 ```text
-Banking-Loan-Risk-Credit-Analytics
-
-├── README.md
-├── banking_loan_risk_analysis.ipynb
-├── banking_loan_risk_queries.sql
-├── banking_loan_risk_engineered.csv
-├── banking_loan_risk_dashboard.pbix
-├── banking_loan_risk_dashboard_1.png
-└── banking_loan_risk_dashboard_2.png
+README.md
+banking_loan_data_quality_pipeline.sql
+banking_loan_eda_feature_engineering.ipynb
+banking_loan_risk_analysis.sql
+banking_loan_risk_dashboard.pbix
+banking_loan_risk_engineered.csv
+customer_credit_insights.png
+executive_risk_overview.png
 ```
-
----
 
 ## Project Link
 
