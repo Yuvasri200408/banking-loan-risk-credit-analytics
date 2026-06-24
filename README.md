@@ -262,7 +262,7 @@ Banking-Loan-Risk-Credit-Analytics
 
 GitHub Repository:
 
-https://github.com/gurubava200509/Banking-Loan-Risk-Credit-Analytics
+https://github.com/Yuvasri200408/banking-loan-risk-credit-analytics/tree/main
 
 ---
 
