@@ -156,15 +156,26 @@ SQL was used to validate business metrics and evaluate borrower risk patterns.
 
 ```sql
 SELECT
-    loan_status,
-    COUNT(*) AS total,
+    CASE
+        WHEN credit_score < 580 THEN 'Poor'
+        WHEN credit_score BETWEEN 580 AND 669 THEN 'Fair'
+        WHEN credit_score BETWEEN 670 AND 739 THEN 'Good'
+        ELSE 'Excellent'
+    END AS credit_band,
+
+    COUNT(*) AS total_loans,
+    SUM(CASE WHEN loan_status = 1 THEN 1 ELSE 0 END) AS defaults,
+
     ROUND(
-        COUNT(*) * 100.0 /
-        (SELECT COUNT(*) FROM loan_cleaned),
+        SUM(CASE WHEN loan_status = 1 THEN 1 ELSE 0 END) * 100.0
+        / COUNT(*),
         2
-    ) AS percentage
+    ) AS default_rate
+
 FROM loan_cleaned
-GROUP BY loan_status;
+GROUP BY credit_band
+ORDER BY default_rate DESC;
+
 ```
 
 Additional SQL analysis included:
@@ -220,12 +231,14 @@ This dashboard focuses on borrower segmentation, credit quality analysis, income
 
 ## Project Files
 
-* [banking_loan_risk_analysis.ipynb](banking_loan_risk_analysis.ipynb) — Data cleaning, EDA, feature engineering, and risk analysis.
-* [banking_loan_risk_queries.sql](banking_loan_risk_queries.sql) — SQL validation, business analysis, and risk assessment queries.
-* [banking_loan_risk_engineered.csv](banking_loan_risk_engineered.csv) — Final engineered analytical dataset.
-* [banking_loan_risk_dashboard.pbix](banking_loan_risk_dashboard.pbix) — Interactive Power BI dashboard.
-* [banking_loan_risk_dashboard_1.png](banking_loan_risk_dashboard_1.png) — Executive dashboard preview.
-* [banking_loan_risk_dashboard_2.png](banking_loan_risk_dashboard_2.png) — Risk analysis dashboard preview.
+- README.md — Project documentation and business findings.
+- banking_loan_data_quality_pipeline.sql — Data validation, quality checks, cleaning rules, and analytical view creation.
+- banking_loan_eda_feature_engineering.ipynb — Exploratory Data Analysis (EDA), feature engineering, risk segmentation, and visualization.
+- banking_loan_risk_analysis.sql — Business-focused SQL analysis covering default risk, credit quality, affordability, and approval decision logic.
+- banking_loan_risk_dashboard.pbix — Interactive Power BI dashboard for risk monitoring and portfolio analysis.
+- banking_loan_risk_engineered.csv — Final analytical dataset containing engineered risk features and customer segments.
+- customer_credit_insights.png — Dashboard page focused on borrower characteristics, credit quality, and default behavior.
+- executive_risk_overview.png — Executive-level dashboard summarizing portfolio risk, default performance, and lending insights.
 
 ---
 
