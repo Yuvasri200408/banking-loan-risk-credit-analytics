@@ -59,78 +59,42 @@ FROM loan_cleaned
 GROUP BY dti_band
 ORDER BY default_rate DESC;
 
--- RISK SCORE- FEATURE ENGINEERING
-SELECT 
-    *,
+-- RISK SCORING AND LOAN APPROVAL DECISION
 
-    (
-        CASE 
-            WHEN person_income < 30000 THEN 30
-            WHEN person_income BETWEEN 30000 AND 70000 THEN 15
-            ELSE 5
-        END +
+WITH risk_calculation AS (
+    SELECT
+        *,
 
-        CASE 
-            WHEN loan_percent_income > 0.3 THEN 40
-            WHEN loan_percent_income BETWEEN 0.1 AND 0.3 THEN 20
-            ELSE 5
-        END +
-
-        CASE 
-            WHEN credit_score < 580 THEN 30
-            WHEN credit_score BETWEEN 580 AND 669 THEN 15
-            ELSE 5
-        END
-    ) AS risk_score
-
-FROM loan_cleaned;
-
---  APPROVAL DECISION ENGINE
-SELECT 
-    *,
-
-    CASE 
-        WHEN (
-            CASE 
+        (
+            CASE
                 WHEN person_income < 30000 THEN 30
                 WHEN person_income BETWEEN 30000 AND 70000 THEN 15
                 ELSE 5
             END +
 
-            CASE 
+            CASE
                 WHEN loan_percent_income > 0.3 THEN 40
                 WHEN loan_percent_income BETWEEN 0.1 AND 0.3 THEN 20
                 ELSE 5
             END +
 
-            CASE 
+            CASE
                 WHEN credit_score < 580 THEN 30
                 WHEN credit_score BETWEEN 580 AND 669 THEN 15
                 ELSE 5
             END
-        ) >= 70 THEN 'REJECT'
+        ) AS risk_score
 
-        WHEN (
-            CASE 
-                WHEN person_income < 30000 THEN 30
-                WHEN person_income BETWEEN 30000 AND 70000 THEN 15
-                ELSE 5
-            END +
+    FROM loan_cleaned
+)
 
-            CASE 
-                WHEN loan_percent_income > 0.3 THEN 40
-                WHEN loan_percent_income BETWEEN 0.1 AND 0.3 THEN 20
-                ELSE 5
-            END +
+SELECT
+    *,
 
-            CASE 
-                WHEN credit_score < 580 THEN 30
-                WHEN credit_score BETWEEN 580 AND 669 THEN 15
-                ELSE 5
-            END
-        ) BETWEEN 40 AND 69 THEN 'REVIEW'
-
+    CASE
+        WHEN risk_score >= 70 THEN 'REJECT'
+        WHEN risk_score BETWEEN 40 AND 69 THEN 'REVIEW'
         ELSE 'APPROVE'
     END AS approval_decision
 
-FROM loan_cleaned;
+FROM risk_calculation;
